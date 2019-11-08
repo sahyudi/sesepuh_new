@@ -12,8 +12,8 @@
                     </div>
 
                     <div class="card-body">
-                        <form method="POST">
-                            <div class="row">
+                        <form method="POST" action="<?= base_url('auth/registration') ?>">
+                            <!-- <div class="row">
                                 <div class="form-group col-6">
                                     <label for="frist_name">First Name</label>
                                     <input id="frist_name" type="text" class="form-control" name="frist_name" autofocus>
@@ -22,31 +22,41 @@
                                     <label for="last_name">Last Name</label>
                                     <input id="last_name" type="text" class="form-control" name="last_name">
                                 </div>
+                            </div> -->
+
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input id="name" type="text" class="form-control" name="name">
+                                <!-- <div class="invalid-feedback"> -->
+                                <?= form_error('name', '<small class="pl-3 text-danger">', '</small>'); ?>
+                                <!-- </div> -->
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input id="email" type="email" class="form-control" name="email">
-                                <div class="invalid-feedback">
-                                </div>
+                                <input id="email" type="text" class="form-control" name="email">
+                                <!-- <div class="invalid-feedback"> -->
+                                <?= form_error('email', '<small class="pl-3 text-danger">', '</small>'); ?>
+                                <!-- </div> -->
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label for="password" class="d-block">Password</label>
                                     <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
+                                    <?= form_error('password', '<small class="pl-3 text-danger">', '</small>'); ?>
                                     <div id="pwindicator" class="pwindicator">
                                         <div class="bar"></div>
                                         <div class="label"></div>
                                     </div>
                                 </div>
                                 <div class="form-group col-6">
-                                    <label for="password2" class="d-block">Password Confirmation</label>
-                                    <input id="password2" type="password" class="form-control" name="password-confirm">
+                                    <label for="password" class="d-block">Password Confirmation</label>
+                                    <input id="password2" type="password" class="form-control" name="password2">
                                 </div>
                             </div>
 
-                            <div class="form-divider">
+                            <!-- <div class="form-divider">
                                 Your Home
                             </div>
                             <div class="row">
@@ -84,7 +94,7 @@
                                     <input type="checkbox" name="agree" class="custom-control-input" id="agree">
                                     <label class="custom-control-label" for="agree">I agree with the terms and conditions</label>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block">

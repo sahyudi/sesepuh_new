@@ -1,14 +1,17 @@
 <section class="section">
     <div class="d-flex flex-wrap align-items-stretch">
         <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
+        
             <div class="p-4 m-3">
                 <img src="<?= base_url('assets/') ?>img/stisla-fill.svg" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
                 <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Sesepuh ID</span></h4>
                 <p class="text-muted">Before you get started, you must login or register if you don't already have an account.</p>
+                <?= $this->session->flashdata('message'); ?>
                 <form method="POST" action="<?= base_url('auth') ?>" class="needs-validation" novalidate="">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                        <?= form_error('email', '<small class="pl-3 text-danger">', '</small>'); ?>
                         <div class="invalid-feedback">
                             Please fill in your email
                         </div>
@@ -19,6 +22,7 @@
                             <label for="password" class="control-label">Password</label>
                         </div>
                         <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                        <?= form_error('password', '<small class="pl-3 text-danger">', '</small>'); ?>
                         <div class="invalid-feedback">
                             please fill in your password
                         </div>
