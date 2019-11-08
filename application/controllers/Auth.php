@@ -36,7 +36,6 @@ class Auth extends CI_Controller
 
         $user = $this->db->get_where('tbl_user', ['email' => $email])->row_array();
 
-        // var_dump($user);
         if ($user) {
             if ($user['is_active'] == 1) {
                 if (password_verify($password, $user['password'])) {
@@ -48,7 +47,6 @@ class Auth extends CI_Controller
 
                     $this->session->set_userdata($data);
                     if ($user['role_id'] == 1) {
-                        # code...
                         redirect('admin');
                     } else {
                         redirect('user');
@@ -132,6 +130,7 @@ class Auth extends CI_Controller
 
     public function blocked()
     {
+        $data['title'] = 'Page Not Found';
         $this->load->view('auth/blocked');
     }
 }

@@ -5,7 +5,7 @@
                 <img src="<?= base_url('assets/') ?>img/stisla-fill.svg" alt="logo" width="80" class="shadow-light rounded-circle mb-5 mt-2">
                 <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold">Sesepuh ID</span></h4>
                 <p class="text-muted">Before you get started, you must login or register if you don't already have an account.</p>
-                <form method="POST" action="#" class="needs-validation" novalidate="">
+                <form method="POST" action="<?= base_url('auth') ?>" class="needs-validation" novalidate="">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
