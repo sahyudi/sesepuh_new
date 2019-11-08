@@ -20,10 +20,10 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Login Page';
-            // $this->load->view('auth/header', $data);
+            $data['title'] = 'Sesepuh Login';
+            $this->load->view('auth/header-auth', $data);
             $this->load->view('auth/login');
-            // $this->load->view('auth/footer');
+            $this->load->view('auth/footer-auth');
         } else {
             $this->_login();
         }
@@ -84,10 +84,10 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]');
 
         if ($this->form_validation->run() == false) {
-            // $data['title'] = 'SESEPUH User Registration';
-            // $this->load->view('auth/header', $data);
+            $data['title'] = 'Sesepuh Registration';
+            $this->load->view('auth/header-auth', $data);
             $this->load->view('auth/registration');
-            // $this->load->view('auth/footer');
+            $this->load->view('auth/footer-auth');
         } else {
             $data = [
                 'name' => htmlspecialchars($this->input->post('name', true)),
@@ -116,12 +116,18 @@ class Auth extends CI_Controller
 
     public function forgot()
     {
+        $data['title'] = 'Forgot Password';
+        $this->load->view('auth/header-auth', $data);
         $this->load->view('auth/forgot-password');
+        $this->load->view('auth/footer-auth');
     }
 
     public function reset()
     {
+        $data['title'] = 'Reset Password';
+        $this->load->view('auth/header-auth', $data);
         $this->load->view('auth/reset-password');
+        $this->load->view('auth/footer-auth');
     }
 
     public function blocked()
