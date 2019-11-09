@@ -3,7 +3,7 @@
         <h1><?= $title ?></h1>
     </div>
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-10">
             <?= form_error('menu', '<div class="alert alert-danger" role="alert">', '</div>') ?>
             <?= $this->session->flashdata('message'); ?>
 
@@ -13,6 +13,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
+                            <th>Group</th>
                             <th>Status</th>
                             <th>PJH</th>
                         </tr>
@@ -30,6 +31,7 @@
                                     <input type="hidden" name="name[]" id="name[]" value="<?= $m['name']; ?>">
                                     <?= $m['name'] ?>
                                 </td>
+                                <td>Team <?= $m['group_id'] ?></td>
                                 <td align="center">
                                     <select name="check[]" class="form-control">
                                         <option value="0">Laporan</option>

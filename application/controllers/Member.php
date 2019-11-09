@@ -70,6 +70,10 @@ class Member extends CI_Controller
 
     function telegram($msg = null, $telegram_id = null)
     {
+        $telegrambot = '910315548:AAFGD3BDxaKxvUhGZvFd1YdXZj5xmh85iYk';
+        $telegram_id = -312083762;
+
+
         $_id = $this->input->post('id');
         $_name = $this->input->post('name');
         $_group = $this->input->post('group');
@@ -96,7 +100,9 @@ class Member extends CI_Controller
 
         $no = 1;
         for ($h = 1; $h < 5; $h++) {
-            $msg .= "PJH Team " . $h . " : <b> " . $_pjh[$h - 1] . "</b>\n";
+            $per_group = "";
+            $msg .= "PJH Team " . $h . " : <b> " . $_pjh[$h - 1] . "</b>\n\n";
+            $per_group .= "PJH Team " . $h . " : <b> " . $_pjh[$h - 1] . "</b>\n\n";
             for ($i = 0; $i < count($_id); $i++) {
                 if ($h == $_group[$i]) {
                     if ($_check[$i] == 0) {
@@ -111,9 +117,16 @@ class Member extends CI_Controller
                     $id = $_id[$i];
                     $nama = $_name[$i];
                     $msg .= "\x23\xE2\x83\xA3 " . $no++ . " \xF0\x9F\x86\x94 S" . $id . " " . $nama . " " . $status . "\n";
+                    $per_group .= "\x23\xE2\x83\xA3 " . $no++ . " \xF0\x9F\x86\x94 S" . $id . " " . $nama . " " . $status . "\n";
                 }
             }
 
+            $url = 'https://api.telegram.org/bot' . $telegrambot . '/sendMessage';
+            $data = array('chat_id' => $telegram_id, 'text' => $per_group, 'parse_mode' => 'HTML');
+            $options = array('http' => array('method' => 'POST', 'header' => "Content-Type:application/x-www-form-urlencoded\r\n", 'content' => http_build_query($data),),);
+
+            $context = stream_context_create($options);
+            $result = file_get_contents($url, false, $context);
             $msg .= "\n";
         }
 
@@ -139,11 +152,7 @@ class Member extends CI_Controller
         $msg .= "2. Jika target pembacaan sudah memenuhi/melebihi batas minimal pembacaan yakni 10 halaman/hari, boleh langsung dilaporkan. \n";
         $msg .= "3. Jika sudah laporan, namun memiliki targetan baca yang lain, tetep dilanjutkan bacanya tapi tidak dilaporkan. \n";
 
-        // print_r($msg);
-        // die;
-        $telegrambot = '910315548:AAFGD3BDxaKxvUhGZvFd1YdXZj5xmh85iYk';
-        $telegram_id = -312083762;
-        // $telegram_id = 384920975;
+
         //Markdown
         $url = 'https://api.telegram.org/bot' . $telegrambot . '/sendMessage';
         $data = array('chat_id' => $telegram_id, 'text' => $msg, 'parse_mode' => 'HTML');
