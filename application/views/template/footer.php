@@ -27,7 +27,7 @@
 <script src="<?= base_url('assets') ?>/js/custom.js"></script>
 <script>
   $(document).ready(function() {
-    $('.table').DataTable();
+    $('.data-table').DataTable();
   });
 </script>
 <!-- Page Specific JS File -->
