@@ -40,6 +40,7 @@ class Member extends CI_Controller
         $data = $this->db->get_where('tbl_user', ['id' => $id])->row_array();
         echo json_encode($data);
     }
+
     public function update()
     {
         $data = [
@@ -193,9 +194,32 @@ class Member extends CI_Controller
                 'is_active' => 1
             ];
             $this->db->insert('tbl_member', $data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Menu new added!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Member new added!</div>');
             redirect('member/addMember');
         }
+    }
+
+    public function updateMember()
+    {
+        $id = $this->input->post('id-member');
+        $data = [
+            'name' => $this->input->post('edit-name'),
+            'sesepuh_id' => $this->input->post('edit-sesepuh_id'),
+            'group_id' => $this->input->post('edit-group_id')
+        ];
+
+        if ($this->db->update('tbl_member', $data, ['id' => $id])) {
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Member updated!</div>');
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Member failed updated!</div>');
+        }
+        redirect('member/addMember');
+    }
+
+    public function edit_member($id)
+    {
+        $data = $this->db->get_where('tbl_member', ['id' => $id])->row_array();
+        echo json_encode($data);
     }
 }
 // $_hadir = "\xE2\x9A\xAA";
