@@ -8,6 +8,21 @@
             <?= $this->session->flashdata('message'); ?>
 
             <form action="<?= base_url('member/telegram') ?>" method="post">
+                <div class="form-group">
+                    <label for="">Admin</label>
+                    <select class="form-control col-6" name="admin" id="admin">
+                        <option value="Furqon">Furqon</option>
+                        <option value="Syifa">Syifa</option>
+                        <option value="Rifqi">Rifqi</option>
+                        <option value="Sahyudi">Sahyudi</option>
+                        <option value="Fadly">Fadly</option>
+                        <option value="Fariez">Fariez</option>
+                        <option value="Fauzy">Fauzy</option>
+                        <option value="Nurmi">Nurmi</option>
+                        <option value="Dealsey">Dealsey</option>
+                        <option value="Sentia">Sentia</option>
+                    </select>
+                </div>
                 <table class="table table-hover">
                     <thead>
                         <tr>
