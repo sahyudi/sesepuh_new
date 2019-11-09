@@ -13,7 +13,7 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?= base_url('assets') ?>/css/style.css">
   <link rel="stylesheet" href="<?= base_url('assets') ?>/css/components.css">
-  <link rel="stylesheet" href="<?= base_url('assets') ?>/css/bootstrap.css">
+  <!-- <link rel="stylesheet" href="<?= base_url('assets') ?>/css/bootstrap.css"> -->
   <link rel="stylesheet" href="<?= base_url('assets') ?>/css/dataTables.bootstrap4.min.css">
 
 </head>
