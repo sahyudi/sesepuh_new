@@ -162,6 +162,25 @@ class Member extends CI_Controller
         $this->load->view('member/create-form', $data);
         $this->load->view('template/footer');
     }
+
+
+    public function addMember()
+    {
+        $data['title'] = 'Add Member';
+        $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['menu'] = $this->db->get('tbl_user_menu')->result_array();
+
+        // $this->db->Select('*');
+        // $this->db->from('tbl_user ');
+        // $data['member'] = $this->db->get()->result_array();
+        // $data['role'] = $this->db->get('tbl_user_role')->result_array();
+
+        $this->load->view('template/header', $data);
+        $this->load->view('template/sidebar', $data);
+        $this->load->view('template/navbar', $data);
+        $this->load->view('member/add-member', $data);
+        $this->load->view('template/footer');
+    }
 }
 // $_hadir = "\xE2\x9A\xAA";
         // $_absen1 = "\xF0\x9F\x94\xB5";

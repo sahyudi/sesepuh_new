@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add-book">Add New Book</a>
+                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add-member">Add New Member</a>
                 <div class="card-header">
                     <h4>Daftar Sahahabat SESEPUH ID</h4>
                     <div class="card-header-form">
@@ -38,7 +38,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 1; ?>
+                                <!-- <?php $no = 1; ?>
                                 <?php foreach ($member as $m) { ?>
                                     <tr>
                                         <td class="p-0 text-center">
@@ -56,7 +56,7 @@
                                             <a href="<?= base_url('member/delete/') . $m['id'] ?>" onclick="return myFunction()" class="badge badge-danger">delete</a>
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                <?php } ?> -->
                             </tbody>
                         </table>
                     </div>
@@ -68,7 +68,7 @@
 <!-- /.container-fluid -->
 <!-- End of Main Content -->
 <!-- Modal -->
-<div class="modal fade" id="add-book" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="add-member" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -77,41 +77,28 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('book/add') ?>" method="post">
+            <form action="<?= base_url('member/addMember') ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Tanggal Beli</label>
-                        <input type="date" class="form-control" id="date_buy" name="date_buy">
+                        <label for="recipient-name" class="col-form-label">Nama</label>
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Penulis</label>
-                        <input type="text" class="form-control" name="author" id="author">
+                        <label for="recipient-name" class="col-form-label">ID SESEPUH</label>
+                        <input type="text" class="form-control" name="id-sesepuh" id="id-sesepuh">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Judul</label>
-                        <input type="text" class="form-control" name="title" id="title">
+                        <label for="recipient-name" class="col-form-label">Group</label>
+                        <select name="group-id" id="group-id" class="form-control">
+                            <option value="">Selecet Group</option>
+                            <option value="1">1 (satu)</option>
+                            <option value="2">2 (dua)</option>
+                            <option value="3">3 (tiga)</option>
+                            <option value="4">4 (empat)</option>
+                            <option value="5">5 (lima)</option>
+                            <option value="6">6 (enam)</option>
+                        </select>
                     </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Publisher</label>
-                        <input type="text" class="form-control" name="publisher" id="publisher">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Tahun</label>
-                        <input type="text" class="form-control" name="years" id="years">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">ISBN</label>
-                        <input type="text" class="form-control" name="isbn" id="isbn">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Jumlah</label>
-                        <input type="text" class="form-control" name="qty" id="qty">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Deskcripsi</label>
-                        <textarea name="descrip" id="descrip" class="form-control"></textarea>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
