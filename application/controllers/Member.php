@@ -72,8 +72,10 @@ class Member extends CI_Controller
     {
         $_id = $this->input->post('id');
         $_name = $this->input->post('name');
+        $_group = $this->input->post('group');
         $_check = $this->input->post('check');
-        // print_r($_id);
+        $_pjh = $this->input->post('pjh');
+        // print_r($_pjh);
         // die;
         $quotes = $this->input->post('quotes');
         $by_ = $this->input->post('by_');
@@ -93,19 +95,26 @@ class Member extends CI_Controller
         $msg .= "<b>" . $_quotes . "</b>\n\n";
 
         $no = 1;
-        for ($i = 0; $i < count($_id); $i++) {
-            if ($_check[$i] == 0) {
-                $status = "\xE2\x9A\xAA";
-            } else if ($_check[$i] == 1) {
-                $status = "\xF0\x9F\x94\xB5";
-            } else if ($_check[$i] == 2) {
-                $status = "\xF0\x9F\x94\xB4";
-            } else if ($_check[$i] == 3) {
-                $status = "\xF0\x9F\x9A\xB7";
+        for ($h = 1; $h < 5; $h++) {
+            $msg .= "PJH Team " . $h . " : <b> " . $_pjh[$h - 1] . "</b>\n";
+            for ($i = 0; $i < count($_id); $i++) {
+                if ($h == $_group[$i]) {
+                    if ($_check[$i] == 0) {
+                        $status = "\xE2\x9A\xAA";
+                    } else if ($_check[$i] == 1) {
+                        $status = "\xF0\x9F\x94\xB5";
+                    } else if ($_check[$i] == 2) {
+                        $status = "\xF0\x9F\x94\xB4";
+                    } else if ($_check[$i] == 3) {
+                        $status = "\xF0\x9F\x9A\xB7";
+                    }
+                    $id = $_id[$i];
+                    $nama = $_name[$i];
+                    $msg .= "\x23\xE2\x83\xA3 " . $no++ . " \xF0\x9F\x86\x94 S" . $id . " " . $nama . " " . $status . "\n";
+                }
             }
-            $id = $_id[$i];
-            $nama = $_name[$i];
-            $msg .= "\x23\xE2\x83\xA3 " . $no++ . " \xF0\x9F\x86\x94 S0" . $id . " " . $nama . " " . $status . "\n";
+
+            $msg .= "\n";
         }
 
 

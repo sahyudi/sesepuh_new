@@ -14,6 +14,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Status</th>
+                            <th>PJH</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +26,7 @@
                                     <?= $no++ ?>
                                 </td>
                                 <td>
+                                    <input type="hidden" name="group[]" id="group[]" value="<?= $m['group_id']; ?>">
                                     <input type="hidden" name="name[]" id="name[]" value="<?= $m['name']; ?>">
                                     <?= $m['name'] ?>
                                 </td>
@@ -36,9 +38,9 @@
                                         <option value="3">Tidak laporan Tiga hari</option>
                                     </select>
                                 </td>
-                                <!-- <td align="center">
-                                    <input type="checkbox" value="3" name="check[]" id="check[]3">
-                                </td> -->
+                                <td align="center">
+                                    <input type="checkbox" value="<?= $m['name']; ?>" name="pjh[]">
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>
