@@ -3,48 +3,75 @@
         <h1><?= $title ?></h1>
     </div>
     <div class="row">
-        <div class="col-lg-12">
-            <?= form_error('menu', '<div class="alert alert-danger" role="alert">', '</div>') ?>
-
-            <?= $this->session->flashdata('message'); ?>
-
-            <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#add-book">Add New Book</a>
-            <table class="table table-hover ">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Tanggal Beli</th>
-                        <th scope="col">Penullis</th>
-                        <th scope="col">Judul</th>
-                        <th scope="col">Penerbit</th>
-                        <th scope="col">Tahun</th>
-                        <th scope="col">ISBN</th>
-                        <th scope="col">Jumlah</th>
-                        <th scope="col">Deskripsi</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 1; ?>
-                    <?php foreach ($book as $m) { ?>
-                        <tr>
-                            <td><?= $no++ ?></td>
-                            <td><?= $m['date_buy'] ?></td>
-                            <td><?= $m['author'] ?></td>
-                            <td><?= $m['title'] ?></td>
-                            <td><?= $m['publisher'] ?></td>
-                            <td><?= $m['years'] ?></td>
-                            <td><?= $m['isbn'] ?></td>
-                            <td><?= $m['qty'] ?></td>
-                            <td><?= $m['descrip'] ?></td>
-                            <td>
-                                <a href="#" data-id="<?= $m['id']; ?>" data-target="#edit-member" data-toggle="modal" class="badge badge-success btn-edit">Edit</a>
-                                <a href="<?= base_url('book/delete/') . $m['id'] ?>" onclick="return myFunction()" class="badge badge-danger">delete</a>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+        <div class="col-12">
+            <div class="card">
+                <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add-book">Add New Book</a>
+                <div class="card-header">
+                    <h4>Daftar Buku</h4>
+                    <div class="card-header-form">
+                        <form>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div class="custom-checkbox custom-control">
+                                            <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
+                                            <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
+                                        </div>
+                                    </th>
+                                    <th>No</th>
+                                    <th>Tanggal Beli</th>
+                                    <th>Penullis</th>
+                                    <th>Judul</th>
+                                    <th>Penerbit</th>
+                                    <th>Tahun</th>
+                                    <th>ISBN</th>
+                                    <th>Jumlah</th>
+                                    <th>Deskripsi</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1; ?>
+                                <?php foreach ($book as $m) { ?>
+                                    <tr>
+                                        <td class="p-0 text-center">
+                                            <div class="custom-checkbox custom-control">
+                                                <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
+                                                <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
+                                            </div>
+                                        </td>
+                                        <td><?= $no++ ?></td>
+                                        <td><?= $m['date_buy'] ?></td>
+                                        <td><?= $m['author'] ?></td>
+                                        <td><?= $m['title'] ?></td>
+                                        <td><?= $m['publisher'] ?></td>
+                                        <td><?= $m['years'] ?></td>
+                                        <td><?= $m['isbn'] ?></td>
+                                        <td><?= $m['qty'] ?></td>
+                                        <td><?= $m['descrip'] ?></td>
+                                        <td>
+                                            <a href="#" data-id="<?= $m['id']; ?>" data-target="#edit-member" data-toggle="modal" class="badge badge-success btn-edit">Edit</a>
+                                            <a href="<?= base_url('book/delete/') . $m['id'] ?>" onclick="return myFunction()" class="badge badge-danger">delete</a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -76,11 +103,11 @@
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Publisher</label>
-                        <input type="text" class="form-control" name="years" id="years">
+                        <input type="text" class="form-control" name="publisher" id="publisher">
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Tahun</label>
-                        <input type="text" class="form-control" name="publisher" id="publisher">
+                        <input type="text" class="form-control" name="years" id="years">
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">ISBN</label>
