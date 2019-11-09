@@ -79,6 +79,7 @@ class Member extends CI_Controller
         $_group = $this->input->post('group');
         $_check = $this->input->post('check');
         $_pjh = $this->input->post('pjh');
+        $_admin = $this->input->post('admin');
         // print_r($_pjh);
         // die;
         $quotes = $this->input->post('quotes');
@@ -87,7 +88,7 @@ class Member extends CI_Controller
         if ($quotes && $by_) {
             $_quotes = "'" . $quotes . "' " . $by_;
         } else {
-            $_quotes = "'Membaca sebab itu ada pintu ilmu'   by M.S";
+            $_quotes = "'Membacalah sebab itu ada pintu ilmu'   by M.S";
         }
 
         $msg = "\xF0\x9F\x93\x96<b> Sesepuh (Sehari Sepuluh) </b>\xF0\x9F\x93\x96 \n";
@@ -97,6 +98,8 @@ class Member extends CI_Controller
         $msg .= "\xE3\x80\xB0\xE3\x80\xB0\xE3\x80\xB0 \xE2\x9C\x92	\xF0\x9F\x93\x9A \xE2\x9C\x92 \xE3\x80\xB0\xE3\x80\xB0\xE3\x80\xB0\xE3\x80\xB0 \n\n";
 
         $msg .= "<b>" . $_quotes . "</b>\n\n";
+        $msg .= "Admin : " . $_admin . "\n";
+        $msg .= "\xE3\x80\xB0\xE3\x80\xB0\xE3\x80\xB0\xE3\x80\xB0\xE3\x80\xB0\xE3\x80\xB0 \n\n";
 
         $no = 1;
         for ($h = 1; $h < 5; $h++) {
