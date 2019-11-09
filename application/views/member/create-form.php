@@ -11,22 +11,17 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th rowspan="2">No</th>
-                            <th rowspan="2">Nama</th>
-                            <th colspan="3" style="text-align:center;">Laporan</th>
-                        </tr>
-                        <tr>
-                            <th>Ya</th>
-                            <th>Tidak</th>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php $no = 1; ?>
                         <?php foreach ($member as $m) { ?>
                             <tr>
-
                                 <td align="center">
-                                    <input type="hidden" name="id[]" id="id[]" value="<?= $m['id']; ?>">
+                                    <input type="hidden" name="id[]" id="id[]" value="<?= $m['sesepuh_id']; ?>">
                                     <?= $no++ ?>
                                 </td>
                                 <td>
@@ -34,10 +29,12 @@
                                     <?= $m['name'] ?>
                                 </td>
                                 <td align="center">
-                                    <input type="checkbox" value="1" name="check[]" id="check[]1">
-                                </td>
-                                <td align="center">
-                                    <input type="checkbox" value="2" name="check[]" id="check[]2">
+                                    <select name="check[]" class="form-control">
+                                        <option value="0">Laporan</option>
+                                        <option value="1">Tidak Laporan Sehari</option>
+                                        <option value="2">Tidak laporan Dua hari</option>
+                                        <option value="3">Tidak laporan Tiga hari</option>
+                                    </select>
                                 </td>
                                 <!-- <td align="center">
                                     <input type="checkbox" value="3" name="check[]" id="check[]3">
@@ -46,15 +43,8 @@
                         <?php } ?>
                     </tbody>
                 </table>
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Quotes</label>
-                    <textarea class="form-control" id="quotes" name="quotes"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">By</label>
-                    <input type="text" class="form-control" id="by_" name="by_">
-                </div>
-                <button type="submit" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#Create-form">Send</button>
+                <a href="<?= base_url('member') ?>" class="btn btn-danger mb-3 float-left">Back</a>
+                <button type="submit" class="btn btn-primary mb-3 float-right">Send</button>
             </form>
         </div>
     </div>

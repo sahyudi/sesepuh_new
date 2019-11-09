@@ -7,7 +7,7 @@
             <div class="card">
                 <a href="#" class="btn btn-success" data-toggle="modal" data-target="#add-member">Add New Member</a>
                 <div class="card-header">
-                    <h4>Daftar Sahahabat SESEPUH ID</h4>
+                    <h4>Daftar Sahahabat SESEPUH</h4>
                     <div class="card-header-form">
                         <form>
                             <div class="input-group">
@@ -24,39 +24,39 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>
+                                    <!-- <th>
                                         <div class="custom-checkbox custom-control">
                                             <input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
                                             <label for="checkbox-all" class="custom-control-label">&nbsp;</label>
                                         </div>
-                                    </th>
+                                    </th> -->
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>ID SESEPUH</th>
-                                    <th>Rank</th>
+                                    <th>ID Sesepuh</th>
+                                    <th>Group</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- <?php $no = 1; ?>
+                                <?php $no = 1; ?>
                                 <?php foreach ($member as $m) { ?>
                                     <tr>
-                                        <td class="p-0 text-center">
+                                        <!-- <td class="p-0 text-center">
                                             <div class="custom-checkbox custom-control">
                                                 <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
                                                 <label for="checkbox-1" class="custom-control-label">&nbsp;</label>
                                             </div>
-                                        </td>
+                                        </td> -->
                                         <td><?= $no++ ?></td>
-                                        <td><?= $m['date_buy'] ?></td>
-                                        <td><?= $m['author'] ?></td>
-                                        <td><?= $m['title'] ?></td>
+                                        <td><?= $m['name'] ?></td>
+                                        <td><?= $m['sesepuh_id'] ?></td>
+                                        <td><?= $m['group_id'] ?></td>
                                         <td>
                                             <a href="#" data-id="<?= $m['id']; ?>" data-target="#edit-member" data-toggle="modal" class="badge badge-success btn-edit">Edit</a>
                                             <a href="<?= base_url('member/delete/') . $m['id'] ?>" onclick="return myFunction()" class="badge badge-danger">delete</a>
                                         </td>
                                     </tr>
-                                <?php } ?> -->
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -77,7 +77,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('member/addMember') ?>" method="post">
+            <form action="<?= base_url('member/addMember') ?>" class="needs-validation" novalidate="" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Nama</label>
@@ -85,11 +85,11 @@
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">ID SESEPUH</label>
-                        <input type="text" class="form-control" name="id-sesepuh" id="id-sesepuh">
+                        <input type="text" class="form-control" name="sesepuh_id" id="sesepuh_id">
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Group</label>
-                        <select name="group-id" id="group-id" class="form-control">
+                        <select name="group_id" id="group_id" class="form-control">
                             <option value="">Selecet Group</option>
                             <option value="1">1 (satu)</option>
                             <option value="2">2 (dua)</option>

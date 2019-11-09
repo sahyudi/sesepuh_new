@@ -93,14 +93,14 @@ class Member extends CI_Controller
 
         $no = 1;
         for ($i = 0; $i < count($_id); $i++) {
-            if ($_check[$i] == 1) {
+            if ($_check[$i] == 0) {
+                $status = "\xE2\x9A\xAA";
+            } else if ($_check[$i] == 1) {
                 $status = "\xF0\x9F\x94\xB5";
             } else if ($_check[$i] == 2) {
                 $status = "\xF0\x9F\x94\xB4";
             } else if ($_check[$i] == 3) {
                 $status = "\xF0\x9F\x9A\xB7";
-            } else {
-                $status = "\xE2\x9A\xAA";
             }
             $id = $_id[$i];
             $nama = $_name[$i];
@@ -147,12 +147,13 @@ class Member extends CI_Controller
 
     public function createForm()
     {
-        $data['title'] = 'List';
+        $data['title'] = 'Form';
         $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['menu'] = $this->db->get('tbl_user_menu')->result_array();
 
         $this->db->Select('*');
-        $this->db->from('tbl_user ');
+        $this->db->from('tbl_member');
+        $this->db->order_by('sesepuh_id', 'ASC');
         $data['member'] = $this->db->get()->result_array();
         $data['role'] = $this->db->get('tbl_user_role')->result_array();
 
@@ -170,16 +171,31 @@ class Member extends CI_Controller
         $data['user'] = $this->db->get_where('tbl_user', ['email' => $this->session->userdata('email')])->row_array();
         $data['menu'] = $this->db->get('tbl_user_menu')->result_array();
 
-        // $this->db->Select('*');
-        // $this->db->from('tbl_user ');
-        // $data['member'] = $this->db->get()->result_array();
+        $this->db->Select('*');
+        $this->db->from('tbl_member ');
+        $data['member'] = $this->db->get()->result_array();
         // $data['role'] = $this->db->get('tbl_user_role')->result_array();
+        $this->form_validation->set_rules('name', 'name', 'required');
+        $this->form_validation->set_rules('sesepuh_id', 'ID Sesepuh', 'required');
+        $this->form_validation->set_rules('group_id', 'Group', 'required');
 
-        $this->load->view('template/header', $data);
-        $this->load->view('template/sidebar', $data);
-        $this->load->view('template/navbar', $data);
-        $this->load->view('member/add-member', $data);
-        $this->load->view('template/footer');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('template/header', $data);
+            $this->load->view('template/sidebar', $data);
+            $this->load->view('template/navbar', $data);
+            $this->load->view('member/add-member', $data);
+            $this->load->view('template/footer');
+        } else {
+            $data = [
+                'name' => $this->input->post('name'),
+                'sesepuh_id' => $this->input->post('sesepuh_id'),
+                'group_id' => $this->input->post('group_id'),
+                'is_active' => 1
+            ];
+            $this->db->insert('tbl_member', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Menu new added!</div>');
+            redirect('member/addMember');
+        }
     }
 }
 // $_hadir = "\xE2\x9A\xAA";

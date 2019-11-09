@@ -201,12 +201,31 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right">
         <div class="dropdown-title">Logged in 5 min ago</div>
-        <a href="features-profile.html" class="dropdown-item has-icon">
-          <i class="far fa-user"></i> Profile
-        </a>
-        <a href="features-activities.html" class="dropdown-item has-icon">
-          <i class="fas fa-bolt"></i> Activities
-        </a>
+        <?php
+        $role_id = $this->session->userdata('role_id');
+        $queryMenu = "SELECT `M`.`id`, `menu` 
+                            FROM `tbl_user_menu` AS M JOIN `tbl_user_access_menu` AS AM
+                            ON `M`.`id` = `AM`.`menu_id`
+                            WHERE `AM`.`role_id` = $role_id AND `M`.`id` = 2 
+                            ORDER BY `AM`.`menu_id` ASC
+                        ";
+        $menu = $this->db->query($queryMenu)->row();
+        // $menuId = $menu->id;
+
+        if (!empty($menu)) {
+          $querySubMenu = "SELECT * 
+                                                FROM `tbl_user_sub_menu`AS SB JOIN `tbl_user_menu` AS UM
+                                                ON `SB`.menu_id = `UM`.`id`
+                                                WHERE `SB`.`menu_id` = $menu->id
+                                                AND `SB`.`is_active` = 1
+                                            ";
+          $submenu = $this->db->query($querySubMenu)->result_array();
+          foreach ($submenu as $sm) { ?>
+            <a href="<?= base_url($sm['url']) ?>" class="dropdown-item has-icon">
+              <i class="fas <?= $sm['icon'] ?>"></i> <?= $sm['title']; ?>
+            </a>
+        <?php }
+        } ?>
         <a href="features-settings.html" class="dropdown-item has-icon">
           <i class="fas fa-cog"></i> Settings
         </a>
