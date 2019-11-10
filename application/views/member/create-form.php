@@ -28,8 +28,8 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Group</th>
                             <th>Status</th>
+                            <th>Group</th>
                             <th>PJH</th>
                         </tr>
                     </thead>
@@ -46,7 +46,6 @@
                                     <input type="hidden" name="name[]" id="name[]" value="<?= $m['name']; ?>">
                                     <?= $m['name'] ?>
                                 </td>
-                                <td>Team <?= $m['group_id'] ?></td>
                                 <td align="center">
                                     <select name="check[]" class="form-control">
                                         <option value="0">Laporan</option>
@@ -55,6 +54,7 @@
                                         <option value="3">Tidak laporan Tiga hari</option>
                                     </select>
                                 </td>
+                                <td>Team <?= $m['group_id'] ?></td>
                                 <td align="center">
                                     <input type="checkbox" value="<?= $m['name']; ?>" name="pjh[]">
                                 </td>
